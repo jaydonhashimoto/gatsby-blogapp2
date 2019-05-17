@@ -1,13 +1,11 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
-import {
-    Container,
-    Row,
-    Col
-} from 'reactstrap';
+import { Row, Cell } from "griding"
+import { Container } from "../components/grid"
+
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import * as S from "../components/styles.css"
+import * as S from "../components/style"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import ConcatWords from "../utils/ConcatWords"
@@ -94,9 +92,9 @@ export const query = graphql`
         category
         image {
           childImageSharp {
-            fluid {
-              src
-            }
+            fluid(maxWidth: 1000) {
+                src
+              }
           }
         }
       }

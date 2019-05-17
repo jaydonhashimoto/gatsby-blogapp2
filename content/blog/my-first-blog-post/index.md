@@ -3,7 +3,7 @@ title: My first blog post
 date: 2019-05-12
 author: Jaydon Hashimoto
 featured: true
-image: ./my-image.jpeg
+image: ./my-image.jpg
 category:
   - Fluff
   - Text

@@ -6,6 +6,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-remark-copy-linked-files`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {

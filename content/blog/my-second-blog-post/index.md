@@ -2,8 +2,8 @@
 title: My second blog post
 date: 2019-05-13
 author: Jaydon Hashimoto
-featured: true
-image: ./my-another-image.jpeg
+featured: false
+image: ./my-another-image.jpg
 category:
   - Animals
   - Drawings

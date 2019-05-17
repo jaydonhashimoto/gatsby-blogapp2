@@ -1,5 +1,9 @@
 const path = require(`path`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
+const blogLayout = path.resolve(`./src/layouts/blog-post.js`)
+const blogListLayout = path.resolve(`./src/layouts/blog-list.js`)
+const blogCategoryLayout = path.resolve(`./src/layouts/blog-category.js`)
+const blogAuthorLayout = path.resolve(`./src/layouts/blog-author.js`)
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
     const { createNodeField } = actions
@@ -100,6 +104,62 @@ exports.createPages = ({ graphql, actions }) => {
                     prev: prev,
                     next: next,
                 },
+            })
+        })
+
+        // Creating category page
+        const countCategories = categories.reduce((prev, curr) => {
+            prev[curr] = (prev[curr] || 0) + 1
+            return prev
+        }, {})
+        const allCategories = Object.keys(countCategories)
+
+        allCategories.forEach((cat, i) => {
+            const link = `/blog/category/${cat}`
+
+            Array.from({
+                length: Math.ceil(countCategories[cat] / postsPerPage),
+            }).forEach((_, i) => {
+                createPage({
+                    path: i === 0 ? link : `${link}/page/${i + 1}`,
+                    component: blogCategoryLayout,
+                    context: {
+                        allCategories: allCategories,
+                        category: cat,
+                        limit: postsPerPage,
+                        skip: i * postsPerPage,
+                        currentPage: i + 1,
+                        numPages: Math.ceil(countCategories[cat] / postsPerPage),
+                    },
+                })
+            })
+        })
+
+        // Creating author page
+        const countAuthor = authors.reduce((prev, curr) => {
+            prev[curr] = (prev[curr] || 0) + 1
+            return prev
+        }, {})
+        const allAuthors = Object.keys(countAuthor)
+
+        allAuthors.forEach((aut, i) => {
+            const link = `/blog/author/${aut}`
+
+            Array.from({
+                length: Math.ceil(countAuthor[aut] / postsPerPage),
+            }).forEach((_, i) => {
+                createPage({
+                    path: i === 0 ? link : `${link}/page/${i + 1}`,
+                    component: blogAuthorLayout,
+                    context: {
+                        allAuthors: allAuthors,
+                        author: aut,
+                        limit: postsPerPage,
+                        skip: i * postsPerPage,
+                        currentPage: i + 1,
+                        numPages: Math.ceil(countAuthor[aut] / postsPerPage),
+                    },
+                })
             })
         })
     })

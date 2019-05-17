@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import { Row, Cell } from "griding"
 
 import { Container } from "../components/grid"
-import * as S from "../components/styles.css"
+import * as S from "../components/style"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Pagination from "../components/pagination"

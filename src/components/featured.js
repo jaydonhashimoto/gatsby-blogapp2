@@ -3,7 +3,7 @@ import kebabCase from "lodash.kebabcase"
 import { graphql, Link, useStaticQuery } from "gatsby"
 import { Row, Cell } from "griding"
 
-import * as S from "../components/styles.css"
+import * as S from "../components/style"
 import ConcatWords from "../utils/ConcatWords"
 import formatDate from "../utils/formatDate"
 
@@ -73,7 +73,7 @@ const query = graphql`
         category
         image {
           childImageSharp {
-            fluid {
+            fluid(maxWidth: 1000) {
               src
             }
           }
